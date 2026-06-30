@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novapage — Web Design for Local Businesses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ==============================
+       RESET & BASE
+    ============================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #080808;
+      --dark:       #0f0f0f;
+      --dark-2:     #161616;
+      --white:      #ffffff;
+      --off-white:  #e8e8e8;
+      --gray:       #888888;
+      --light:      #c8c8c8;
+      --accent:     #c8a06a;
+      --border:     rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ==============================
+       NAVIGATION
+    ============================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 3rem;
+      background: rgba(8, 8, 8, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-group { display: flex; gap: 2.5rem; }
+
+    .nav-group a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      transition: color 0.3s;
+    }
+
+    .nav-group a:hover { color: var(--white); }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 5rem 3rem 4rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-label-top {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      line-height: 1.9;
+      max-width: 200px;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .hero-right img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.05) brightness(0.55);
+    }
+
+    .hero-right-label {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      max-width: 230px;
+      text-align: right;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      color: var(--gray);
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+
+    .hero-display {
+      position: absolute;
+      bottom: 4rem;
+      left: 3rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 9.5vw, 9rem);
+      line-height: 0.88;
+      letter-spacing: 0.01em;
+      color: var(--white);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ==============================
+       SINCE / TAGLINE
+    ============================== */
+    .since-section {
+      padding: 9rem 3rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .since-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      margin-bottom: 2.5rem;
+    }
+
+    .since-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 6.5rem);
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .since-heading .accent-word { color: var(--accent); }
+
+    /* ==============================
+       MARQUEE
+    ============================== */
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--dark);
+      padding: 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .marquee-inner {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 28s linear infinite;
+    }
+
+    .marquee-inner:hover { animation-play-state: paused; }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      padding: 0 1.8rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+
+    .marquee-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ==============================
+       SECTION HEADER (centered)
+    ============================== */
+    .section-header {
+      padding: 2.8rem 3rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .section-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 9rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    /* ==============================
+       FULL-WIDTH IMAGE STRIP
+    ============================== */
+    .image-strip {
+      width: 100%;
+      height: 55vh;
+      overflow: hidden;
+      position: relative;
+      border-top: 1px solid var(--border);
+    }
+
+    .image-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      filter: grayscale(100%) contrast(1.08) brightness(0.5);
+      display: block;
+    }
+
+    .image-strip-caption {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 3rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ==============================
+       ABOUT / FOUNDER
+    ============================== */
+    .about-content {
+      padding: 5rem 3rem 7rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-left .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .about-left h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 3.8vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .about-image-block {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-image-block img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.05) brightness(0.6);
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .about-image-block:hover img { transform: scale(1.03); }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 1.5rem;
+    }
+
+    .about-right p {
+      font-size: 0.92rem;
+      color: var(--light);
+      line-height: 1.9;
+    }
+
+    .about-email {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(200, 160, 106, 0.5);
+      padding-bottom: 0.3rem;
+      display: inline-block;
+      margin-top: 0.5rem;
+      transition: opacity 0.3s;
+    }
+
+    .about-email:hover { opacity: 0.7; }
+
+    /* ==============================
+       HOW IT WORKS
+    ============================== */
+    .how-content {
+      padding: 5rem 3rem 7rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .how-left .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .how-left h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 3.2rem);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .how-left p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.9;
+      max-width: 280px;
+    }
+
+    .how-steps { display: flex; flex-direction: column; }
+
+    .how-step {
+      padding: 2.8rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 2rem 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .how-step:first-child { padding-top: 0; }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--accent);
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    .step-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .step-content p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.9;
+      max-width: 480px;
+    }
+
+    .step-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      padding-top: 0.4rem;
+    }
+
+    /* ==============================
+       PORTFOLIO
+    ============================== */
+    .portfolio-top {
+      padding: 4rem 3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--border);
+    }
+
+    .portfolio-intro h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.8rem;
+    }
+
+    .portfolio-intro p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      max-width: 420px;
+      line-height: 1.85;
+    }
+
+    .portfolio-cta {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(200,160,106,0.5);
+      padding-bottom: 0.2rem;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+    }
+
+    .portfolio-cta:hover { opacity: 0.7; }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin: 2rem 3rem 3rem;
+    }
+
+    .portfolio-card {
+      aspect-ratio: 1;
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .portfolio-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.1) brightness(0.55);
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+
+    .portfolio-card:hover img {
+      transform: scale(1.06);
+      filter: grayscale(100%) contrast(1.1) brightness(0.4);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+      z-index: 2;
+    }
+
+    .card-label {
+      position: absolute;
+      bottom: 1.4rem;
+      left: 1.4rem;
+      z-index: 3;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    .card-plan {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
+      color: var(--accent);
+      display: block;
+    }
+
+    /* ==============================
+       PRICING
+    ============================== */
+    .pricing-section { background: var(--dark); }
+
+    .pricing-intro {
+      padding: 5rem 3rem 3rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: end;
+    }
+
+    .pricing-intro h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .pricing-intro p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.9;
+      max-width: 520px;
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin: 2.5rem 3rem 5rem;
+      border: 1px solid var(--border);
+    }
+
+    .pricing-card {
+      background: var(--dark);
+      padding: 3rem 2.5rem;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .pricing-card:hover,
+    .pricing-card.featured { background: var(--dark-2); }
+
+    .pricing-badge {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--accent);
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .pricing-tier {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.6rem;
+    }
+
+    .pricing-target {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .pricing-setup {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .pricing-monthly {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+      margin-top: 0.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 2rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .pricing-features li {
+      font-size: 0.82rem;
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .pricing-features li::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .pricing-btn {
+      display: inline-block;
+      margin-top: 2.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid var(--border);
+      padding: 0.9rem 2rem;
+      transition: border-color 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+
+    .pricing-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ==============================
+       LOCAL / CITY SECTION
+    ============================== */
+    .local-section {
+      padding: 8rem 3rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .local-left .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .local-left h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .local-left p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.95;
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--white);
+      padding: 1rem 2.5rem;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .cta-btn:hover { background: var(--accent); }
+
+    .local-stats { display: flex; flex-direction: column; }
+
+    .stat-item {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .stat-item:first-child { border-top: 1px solid var(--border); }
+
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    /* ==============================
+       CONTACT
+    ============================== */
+    .contact-section { background: var(--dark); border-top: 1px solid var(--border); }
+
+    .contact-top {
+      padding: 5rem 3rem 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-top .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-top h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 6.5rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-top p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      max-width: 440px;
+      line-height: 1.95;
+    }
+
+    .contact-body { display: grid; grid-template-columns: 1fr 2fr; }
+
+    .contact-info {
+      padding: 4rem 3rem;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .info-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .info-value {
+      font-size: 0.9rem;
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    .contact-form { padding: 4rem 3rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .form-group { margin-bottom: 1.8rem; }
+
+    .form-group label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.7rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 0;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--gray); }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+
+    .form-group select option { background: var(--dark-2); color: var(--white); }
+
+    .form-group textarea { resize: none; height: 110px; }
+
+    .submit-btn {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--white);
+      border: none;
+      padding: 1.1rem 3rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover { background: var(--accent); }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    footer { background: var(--black); border-top: 1px solid var(--border); }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: start;
+      padding: 4rem 3rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-copyright {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      color: var(--gray);
+      line-height: 1.9;
+      letter-spacing: 0.1em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      align-items: center;
+    }
+
+    .footer-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      align-items: flex-end;
+    }
+
+    .footer-contact-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      transition: color 0.3s;
+    }
+
+    .footer-contact-links a:hover { color: var(--accent); }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="nav-group">
+      <a href="#how">How It Works</a>
+      <a href="#portfolio">Portfolio</a>
+    </div>
+    <a href="#" class="nav-logo">Novapage</a>
+    <div class="nav-group">
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-label-top">
+        Our dedication to this craft reflects a deep commitment to local businesses and their growth online.
+      </p>
+    </div>
+    <div class="hero-right">
+      <img
+        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&h=1000&q=80&auto=format&fit=crop"
+        alt="Web design workspace"
+      />
+      <p class="hero-right-label">
+        For every business we work with, we forge a digital presence that transforms your idea into a real, visible identity online.
+      </p>
+    </div>
+    <div class="hero-display">
+      ABOUT<br>NOVAPAGE
+    </div>
+  </section>
+
+  <!-- ===== SINCE / TAGLINE ===== -->
+  <section class="since-section">
+    <p class="since-eyebrow">Built for local businesses</p>
+    <h1 class="since-heading">
+      WE HAVE BEEN BUILDING WEBSITES FOR BUSINESSES THAT DESERVE TO BE FOUND <span class="accent-word">ONLINE</span>
+    </h1>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee-section">
+    <div class="marquee-inner">
+      <div class="marquee-item"><span class="marquee-dot"></span>Restaurants</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Contractors</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Salons &amp; Spas</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Auto Repair</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Dentists</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Retail Shops</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Gyms &amp; Fitness</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Law Firms</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Restaurants</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Contractors</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Salons &amp; Spas</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Auto Repair</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Dentists</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Retail Shops</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Gyms &amp; Fitness</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Law Firms</div>
+    </div>
+  </div>
+
+  <!-- ===== WEB DESIGN CENTERED HEADER ===== -->
+  <div class="section-header">
+    <h2>WEB DESIGN</h2>
+  </div>
+
+  <!-- ===== ABOUT CONTENT ===== -->
+  <div class="about-content">
+    <div class="about-left">
+      <p class="section-label">Who We Are</p>
+      <h2>WELCOME TO THE NOVAPAGE TEAM</h2>
+      <div class="about-image-block">
+        <img
+          src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&q=80&auto=format&fit=crop"
+          alt="Web Forge team at work"
+        />
+      </div>
+    </div>
+    <div class="about-right">
+      <p>We started Novapage because we genuinely believe every local business deserves a shot at growing — and a bad website shouldn't be what holds them back.</p>
+      <p>Too many great businesses are basically invisible online. That's what we're here to fix. We build clean, professional sites at prices that actually make sense for small businesses.</p>
+      <p>You run your business. We'll handle your online presence. Simple as that.</p>
+      <a href="mailto:nova.page223@gmail.com" class="about-email">nova.page223@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- ===== FULL-WIDTH IMAGE STRIP ===== -->
+  <div class="image-strip">
+    <img
+      src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=2000&h=800&q=80&auto=format&fit=crop"
+      alt="Building your digital presence"
+    />
+    <span class="image-strip-caption">Crafting every pixel with purpose</span>
+  </div>
+
+  <!-- ===== THE PROCESS CENTERED HEADER ===== -->
+  <div class="section-header" id="how">
+    <h2>THE PROCESS</h2>
+  </div>
+
+  <!-- ===== HOW IT WORKS CONTENT ===== -->
+  <div class="how-content">
+    <div class="how-left">
+      <p class="section-label">How It Works</p>
+      <h2>PRETTY SIMPLE, HONESTLY</h2>
+      <p>No complicated onboarding. No weeks of back and forth. Just three steps and you're live.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <span class="step-num">01</span>
+        <div class="step-content">
+          <h3>Tell Us About Your Business</h3>
+          <p>Fill out the contact form with your details and what you're looking for. Takes about 5 minutes. We'll get back to you the same day.</p>
+        </div>
+        <span class="step-tag">Same day response</span>
+      </div>
+      <div class="how-step">
+        <span class="step-num">02</span>
+        <div class="step-content">
+          <h3>We Build Your Site</h3>
+          <p>We design and build your custom website — mobile friendly, fast loading, and made to turn visitors into actual customers calling your business.</p>
+        </div>
+        <span class="step-tag">Ready in 48 hours</span>
+      </div>
+      <div class="how-step">
+        <span class="step-num">03</span>
+        <div class="step-content">
+          <h3>You Go Live &amp; Grow</h3>
+          <p>Your site goes live and we handle everything from there — hosting, updates, maintenance. You literally don't have to think about it.</p>
+        </div>
+        <span class="step-tag">We handle everything</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OUR PORTFOLIO CENTERED HEADER ===== -->
+  <div class="section-header" id="portfolio">
+    <h2>OUR PORTFOLIO</h2>
+  </div>
+
+  <!-- ===== PORTFOLIO CONTENT ===== -->
+  <div class="portfolio-top">
+    <div class="portfolio-intro">
+      <h2>REAL SITES, REAL RESULTS.</h2>
+      <p>Every concept here is designed for your industry — fast, custom, and launched on your timeline. <em>Please note that the examples below are mockup websites, not real active business sites.</em></p>
+    </div>
+    <a href="#contact" class="portfolio-cta">Start your project →</a>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <img
+        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&h=600&q=80&auto=format&fit=crop"
+        alt="Velocity Auto Detailing"
+      />
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        Velocity Auto Detailing
+        <span class="card-plan">Starter Plan</span>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <img
+        src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=600&q=80&auto=format&fit=crop"
+        alt="Lakeside Café"
+      />
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        Lakeside Café
+        <span class="card-plan">Standard Plan</span>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <img
+        src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?w=600&h=600&q=80&auto=format&fit=crop"
+        alt="Prestige Law Group"
+      />
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        Prestige Law Group
+        <span class="card-plan">Premium Plan</span>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <img
+        src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=600&q=80&auto=format&fit=crop"
+        alt="Bloom Spa & Wellness"
+      />
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        Bloom Spa &amp; Wellness
+        <span class="card-plan">Standard Plan</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SIMPLE PRICING CENTERED HEADER ===== -->
+  <div class="section-header" id="pricing">
+    <h2>SIMPLE PRICING</h2>
+  </div>
+
+  <!-- ===== PRICING CONTENT ===== -->
+  <section class="pricing-section">
+    <div class="pricing-intro">
+      <h2>STRAIGHTFORWARD.<br>NO SURPRISES.</h2>
+      <p>One setup fee to get everything built. One monthly rate to keep it running. That's it. No hidden fees, no surprise invoices, no confusing contracts.</p>
+    </div>
+    <div class="pricing-cards">
+
+      <!-- STARTER -->
+      <div class="pricing-card">
+        <p class="pricing-tier">Starter</p>
+        <p class="pricing-target">Best for food trucks &amp; pop-ups</p>
+        <div class="pricing-setup">$399</div>
+        <div class="pricing-monthly">+ $49 / month</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>1-Page Custom Website</li>
+          <li>Mobile Friendly Design</li>
+          <li>Contact Form</li>
+          <li>Google Maps Integration</li>
+          <li>Managed Hosting &amp; Support</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started →</a>
+      </div>
+
+      <!-- STANDARD -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <p class="pricing-tier">Standard</p>
+        <p class="pricing-target">Best for cafés &amp; small businesses</p>
+        <div class="pricing-setup">$799</div>
+        <div class="pricing-monthly">+ $99 / month</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>3-Page Custom Website</li>
+          <li>Mobile Friendly Design</li>
+          <li>Contact Form</li>
+          <li>Google Maps Integration</li>
+          <li>Managed Hosting &amp; Support</li>
+          <li>SEO Optimization</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started →</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="pricing-card">
+        <p class="pricing-tier">Premium</p>
+        <p class="pricing-target">Best for full-service businesses</p>
+        <div class="pricing-setup">$1,099</div>
+        <div class="pricing-monthly">+ $129 / month</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>5-Page Custom Website</li>
+          <li>Mobile Friendly Design</li>
+          <li>Contact Form</li>
+          <li>Google Maps Integration</li>
+          <li>Managed Hosting &amp; Support</li>
+          <li>SEO Optimization</li>
+          <li>Online Booking System</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== BUILT FOR LOCAL CENTERED HEADER ===== -->
+  <div class="section-header">
+    <h2>BUILT FOR LOCAL</h2>
+  </div>
+
+  <!-- ===== LOCAL SECTION ===== -->
+  <section class="local-section">
+    <div class="local-left">
+      <p class="section-label">Proud to be local</p>
+      <h2>BUILT FOR YOUR CITY'S BUSINESSES</h2>
+      <p>Your city is growing fast. More people are searching online before they ever walk through a door. If your business isn't showing up — you're missing out on customers every single day.</p>
+      <a href="#contact" class="cta-btn">Get Your Site Today</a>
+    </div>
+    <div class="local-stats">
+      <div class="stat-item">
+        <span class="stat-value">3–5</span>
+        <span class="stat-label">Average Days<br>to Delivery</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">$49</span>
+        <span class="stat-label">Starting Monthly<br>Maintenance</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">100%</span>
+        <span class="stat-label">Done For You<br>Setup</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GET IN TOUCH CENTERED HEADER ===== -->
+  <div class="section-header" id="contact">
+    <h2>GET IN TOUCH</h2>
+  </div>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact-section">
+    <div class="contact-top">
+      <p class="section-label">Start your project</p>
+      <h2>LET'S BUILD SOMETHING REAL</h2>
+      <p>Fill out the form and we'll get back to you within a few hours. We'll even put together a free mockup of what your site could look like — no commitment needed.</p>
+    </div>
+    <div class="contact-body">
+      <div class="contact-info">
+        <div>
+          <p class="info-label">Email</p>
+          <p class="info-value">nova.page223@gmail.com</p>
+        </div>
+        <div>
+          <p class="info-label">Location</p>
+          <p class="info-value">Your City &amp; Surrounding Areas</p>
+        </div>
+        <div>
+          <p class="info-label">Response Time</p>
+          <p class="info-value">Usually reply within 2 hours</p>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form id="contact-form">
+          <input type="hidden" name="_subject" value="New Project Inquiry — Novapage" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inp-name">Your Name</label>
+              <input type="text" id="inp-name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="inp-business">Business Name</label>
+              <input type="text" id="inp-business" name="business" placeholder="Your Business LLC" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inp-email">Email Address</label>
+            <input type="email" id="inp-email" name="email" placeholder="jane@yourbusiness.com" required />
+          </div>
+          <div class="form-group">
+            <label for="inp-package">Which Package?</label>
+            <select id="inp-package" name="package">
+              <option value="">Select a package</option>
+              <option>Starter — $399 + $49/mo</option>
+              <option>Standard — $799 + $99/mo</option>
+              <option>Premium — $1,099 + $129/mo</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="inp-message">Tell Us About Your Business</label>
+            <textarea id="inp-message" name="message" placeholder="What do you do, who are your customers, what does your online presence look like today?"></textarea>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn">Send It — We'll Get Back To You Today →</button>
+          <div id="form-status" style="display:none; margin-top:1.2rem; font-family:'Montserrat',sans-serif; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OUR SOCIAL CENTERED HEADER ===== -->
+  <div class="section-header">
+    <h2>OUR SOCIAL</h2>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-copyright">
+        <p>© 2025 Novapage</p>
+        <p style="margin-top:0.5rem; font-size:0.52rem;">Privacy Policy &nbsp;|&nbsp; Cookie Policy</p>
+      </div>
+      <div class="footer-links">
+        <a href="#how">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-contact-links">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const btn    = document.getElementById('submit-btn');
+      const status = document.getElementById('form-status');
+
+      const originalLabel = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      status.style.display = 'none';
+
+      const payload = {
+        name:     document.getElementById('inp-name').value,
+        business: document.getElementById('inp-business').value,
+        email:    document.getElementById('inp-email').value,
+        package:  document.getElementById('inp-package').value,
+        message:  document.getElementById('inp-message').value
+      };
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/nova.page223@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          status.style.color = 'var(--accent)';
+          status.textContent = 'Message sent — we\'ll be in touch shortly.';
+          this.reset();
+        } else {
+          throw new Error();
+        }
+      } catch (_) {
+        status.style.color = '#ff6b6b';
+        status.textContent = 'Something went wrong. Email us directly at nova.page223@gmail.com';
+      }
+
+      status.style.display = 'block';
+      btn.textContent = originalLabel;
+      btn.disabled = false;
+    });
+  </script>
+</body>
+</html>
