@@ -999,86 +999,164 @@
       .nav-group { display: none; }
       .hamburger { display: flex; }
 
-      /* HERO */
+      /* HERO — full-screen image with text overlay */
       .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding-top: 4.5rem;
+        display: block;
+        position: relative;
+        min-height: 95vh;
+        padding-top: 0;
       }
+      .hero-right {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+      }
+      .hero-right::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(8,8,8,0.25) 0%, rgba(8,8,8,0.8) 70%);
+        z-index: 1;
+      }
+      .hero-right-label { display: none; }
       .hero-left {
-        padding: 3rem 1.5rem 2rem;
-        min-height: 45vh;
         position: relative;
         z-index: 2;
+        padding: 7rem 1.5rem 3rem;
+        min-height: 95vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
       }
-      .hero-right { height: 55vw; min-height: 240px; }
-      .hero-right-label { display: none; }
+      .hero-label-top {
+        font-size: 0.68rem;
+        max-width: 100%;
+        margin-bottom: 1.5rem;
+        order: 2;
+      }
       .hero-display {
-        font-size: clamp(2.8rem, 13vw, 5rem);
+        position: relative;
         bottom: auto;
-        top: 1.5rem;
-        left: 1.5rem;
+        left: auto;
+        font-size: clamp(4.5rem, 17vw, 7rem);
+        line-height: 0.88;
+        order: 1;
+        margin-bottom: 1.5rem;
       }
 
       /* SINCE */
       .since-section { padding: 4rem 1.5rem; }
+      .since-heading { font-size: clamp(2rem, 8vw, 3.5rem); }
 
       /* SECTION HEADER */
       .section-header { padding: 2rem 1.5rem; }
 
+      /* IMAGE STRIP */
+      .image-strip { height: 30vh; }
+
       /* ABOUT */
       .about-content {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
         padding: 3rem 1.5rem 4rem;
       }
 
       /* HOW IT WORKS */
       .how-content {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
-        padding: 3rem 1.5rem 4rem;
+        gap: 2rem;
+        padding: 3rem 1.5rem 1rem;
+        border-bottom: none;
       }
       .how-left p { max-width: 100%; }
+      .how-steps { padding: 0 1.5rem 3rem; }
       .how-step {
-        grid-template-columns: 2.5rem 1fr;
-        gap: 1.2rem;
-        padding: 2rem 0;
+        display: block;
+        background: var(--dark-2);
+        border-radius: 10px;
+        border-bottom: none;
+        padding: 2rem 1.5rem;
+        margin-bottom: 0.8rem;
       }
-      .step-tag { display: none; }
+      .how-step:first-child { padding-top: 2rem; }
+      .step-num {
+        font-size: 4.5rem;
+        display: block;
+        margin-bottom: 1rem;
+        line-height: 1;
+      }
+      .step-content p { max-width: 100%; font-size: 0.88rem; }
+      .step-tag {
+        display: block;
+        margin-top: 1.2rem;
+        font-size: 0.65rem;
+      }
 
       /* PORTFOLIO */
       .portfolio-top {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1.2rem;
+        gap: 1rem;
         padding: 2.5rem 1.5rem 1.5rem;
       }
       .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
-        margin: 1rem 1.5rem 2.5rem;
-        gap: 2px;
+        margin: 0.5rem 1.5rem 2.5rem;
       }
 
       /* PRICING */
       .pricing-intro {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.2rem;
         padding: 3rem 1.5rem 2rem;
       }
       .pricing-cards {
         grid-template-columns: 1fr;
-        margin: 1.5rem 1.5rem 4rem;
+        margin: 1rem 1.5rem 4rem;
+        background: transparent;
+        border: none;
+        gap: 1rem;
       }
-      .pricing-card { padding: 2.5rem 1.8rem; }
+      .pricing-card {
+        padding: 2rem 1.8rem;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+      }
+      .pricing-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+      }
 
-      /* LOCAL */
+      /* LOCAL / STATS */
       .local-section {
         grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 4rem 1.5rem;
+        gap: 0;
+        padding: 0;
+      }
+      .local-left {
+        padding: 4rem 1.5rem 3rem;
       }
       .local-left p { max-width: 100%; }
+      .local-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--border);
+      }
+      .stat-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+        padding: 2rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+      }
+      .stat-item:nth-child(even) { border-right: none; }
+      .stat-item:first-child { border-top: none; }
+      .stat-label { text-align: left; }
+      .stat-value { font-size: clamp(2.5rem, 10vw, 4rem); }
 
       /* CONTACT */
       .contact-top { padding: 3rem 1.5rem 2.5rem; }
@@ -1086,13 +1164,31 @@
       .contact-info {
         border-right: none;
         border-bottom: 1px solid var(--border);
-        padding: 2.5rem 1.5rem;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1.8rem;
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        gap: 1.5rem;
       }
-      .contact-form { padding: 2.5rem 1.5rem; }
+      .contact-form { padding: 2rem 1.5rem; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        border: 1px solid rgba(255,255,255,0.15);
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+        border-radius: 6px;
+        padding: 0.9rem 1rem;
+        background: var(--dark-2);
+        font-size: 0.9rem;
+      }
+      .submit-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 1.2rem;
+        background: var(--accent);
+        font-size: 0.68rem;
+        border-radius: 4px;
+      }
 
       /* FOOTER */
       .footer-top {
